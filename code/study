@@ -1,0 +1,12 @@
+with open('input.txt') as f:
+    numbers = list(map(int, f))
+max_3 = max((x for x in numbers if abs(x) % 10 == 3), default=0)
+threshold = max_3 ** 2
+count, max_sum = 0, 0
+for a, b in zip(numbers, numbers[1:]):
+    if (abs(a) % 10 == 3) ^ (abs(b) % 10 == 3):
+        sum_squares = a**2 + b**2
+        if sum_squares >= threshold:
+            count += 1
+            max_sum = max(max_sum, sum_squares)
+print(count, max_sum)
